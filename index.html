@@ -8,7 +8,7 @@
 
     <title>Petuh CS2 — приложение</title>
 
-    <link rel="icon" href="images/PETUH-LOGO.png">
+    <link rel="icon" href="images/logo.png">
 
     <style>
         * {
@@ -267,7 +267,7 @@
             position: relative;
             z-index: 2;
             width: 330px;
-            height: 510px;
+            height: 560px;
             padding: 30px;
             border-radius: 38px;
             background: linear-gradient(
@@ -335,16 +335,127 @@
         }
 
         .app-box {
-            height: 100px;
-            margin-top: 45px;
-            border-radius: 20px;
-            background: linear-gradient(
-                135deg,
-                rgba(245, 194, 28, 0.20),
-                rgba(142, 76, 25, 0.12)
-            );
-            border: 1px solid rgba(245, 194, 28, 0.12);
-        }
+    position: relative;
+
+    min-height: 145px;
+
+    margin-top: 35px;
+    padding: 18px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(247, 198, 42, 0.20),
+            rgba(142, 76, 25, 0.14)
+        );
+
+    border: 1px solid rgba(245, 194, 28, 0.16);
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,0.05),
+        0 15px 35px rgba(233, 154, 24, 0.08);
+
+    overflow: hidden;
+}
+
+.app-box::before {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    right: -45px;
+    top: -65px;
+
+    border-radius: 50%;
+
+    background: rgba(247, 198, 42, 0.10);
+
+    filter: blur(25px);
+}
+
+.app-box-top {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: rgba(255, 245, 220, 0.50);
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.app-box-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #9fd438;
+
+    box-shadow: 0 0 10px rgba(159,212,56,0.7);
+}
+
+.app-box-title {
+    position: relative;
+    z-index: 1;
+
+    margin-top: 8px;
+
+    color: #fff5dc;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.app-box-items {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-top: 13px;
+}
+
+.app-box-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    min-height: 28px;
+
+    padding: 0 8px;
+
+    border-radius: 9px;
+
+    background: rgba(0,0,0,0.12);
+
+    color: rgba(255,245,220,0.68);
+
+    font-size: 9px;
+}
+
+.app-box-icon {
+    font-size: 11px;
+}
+
+.app-box-arrow {
+    margin-left: auto;
+
+    color: #f7c62a;
+
+    font-size: 11px;
+}
 
         .app-lines {
             margin-top: 16px;
@@ -585,7 +696,7 @@
 
             .app-card {
                 width: 285px;
-                height: 460px;
+                height: 510px;
                 padding: 25px;
                 border-radius: 32px;
             }
@@ -1394,6 +1505,28 @@ body.modal-open {
         padding: 13px;
     }
 
+    .app-box {
+    min-height: 125px;
+    margin-top: 30px;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.app-box-title {
+    margin-top: 6px;
+    font-size: 14px;
+}
+
+.app-box-items {
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.app-box-item {
+    min-height: 25px;
+    font-size: 8px;
+}
+
 }
     </style>
 </head>
@@ -1450,7 +1583,7 @@ body.modal-open {
                     </a>
 
                     <span class="platform">
-                        Android · Google Play
+                        Android · ios
                     </span>
                 </div>
 
@@ -1477,7 +1610,7 @@ body.modal-open {
                     </div>
 
                     <img
-                        src="images/PETUH-LOGO.png"
+                        src="images/logo.png"
                         alt=""
                         class="app-logo"
                         width="120"
@@ -1488,7 +1621,30 @@ body.modal-open {
 
                     <div class="app-subtitle">Всё необходимое для CS2</div>
 
-                    <div class="app-box"></div>
+                    <div class="app-box"><div class="app-box-top">
+        <span>Petuh CS2</span>
+        <span class="app-box-dot"></span>
+    </div>
+
+    <div class="app-box-title">
+        Всё под рукой
+    </div>
+
+    <div class="app-box-items">
+
+        <div class="app-box-item">
+            <span class="app-box-icon">🎒</span>
+            <span>Инвентарь</span>
+            <span class="app-box-arrow">→</span>
+        </div>
+
+        <div class="app-box-item">
+            <span class="app-box-icon">🔔</span>
+            <span>Новости</span>
+            <span class="app-box-arrow">→</span>
+        </div>
+
+    </div></div>
 
                     <div class="app-lines">
                         <div class="app-line"></div>
