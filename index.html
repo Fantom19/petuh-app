@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#181714">
+    <meta name="description" content="Petuh CS2 — приложение для игроков CS2. Всё необходимое в одном месте.">
+
+    <title>Petuh CS2 — приложение</title>
+
+    <link rel="icon" href="images/PETUH-LOGO.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: #181714;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #181714;
+            color: #fff5dc;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ---------- Фон ---------- */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 700px;
+            height: 700px;
+            left: -300px;
+            top: -300px;
+            background: rgba(105, 73, 25, 0.20);
+            filter: blur(150px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            right: -250px;
+            bottom: -250px;
+            background: rgba(78, 45, 18, 0.18);
+            filter: blur(150px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* ---------- Контейнер ---------- */
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: min(1200px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* ---------- Header ---------- */
+
+        header {
+            position: relative;
+            z-index: 10;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 155px;
+            height: auto;
+            display: block;
+        }
+
+        .header-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+            padding: 0 20px;
+            border-radius: 12px;
+            color: #fff8e8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            background: #302d27;
+            border: 1px solid #454037;
+            transition: 0.25s ease;
+        }
+
+        .header-download:hover {
+            background: #3b372f;
+            border-color: #5a5143;
+            transform: translateY(-2px);
+        }
+
+        /* ---------- Hero ---------- */
+
+        .hero {
+            position: relative;
+            z-index: 2;
+            min-height: calc(100vh - 90px);
+            min-height: calc(100dvh - 90px);
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            align-items: center;
+            gap: 50px;
+            padding: 40px 0 100px;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .label {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 14px;
+            border-radius: 50px;
+            background: #302d27;
+            border: 1px solid #4a4336;
+            color: #e7ddc8;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .label-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #e7b51b;
+            box-shadow: 0 0 16px rgba(245, 194, 28, 0.65);
+        }
+
+        h1 {
+            font-size: clamp(52px, 6vw, 82px);
+            line-height: 0.98;
+            letter-spacing: -4px;
+            font-weight: 800;
+            margin-bottom: 28px;
+        }
+
+        h1 span {
+            background: linear-gradient(100deg, #ffe88a, #e7b51b, #d98224);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .description {
+            max-width: 580px;
+            color: rgba(255, 245, 220, 0.58);
+            font-size: 18px;
+            line-height: 1.65;
+            margin-bottom: 35px;
+        }
+
+        /* ---------- Кнопка ---------- */
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .download-button {
+            position: relative;
+            height: 58px;
+            padding: 0 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-radius: 14px;
+            color: #241d0c;
+            text-decoration: none;
+            background: linear-gradient(135deg, #f7c62a, #e99a18);
+            font-size: 16px;
+            font-weight: 700;
+            box-shadow: 0 18px 50px rgba(245, 166, 20, 0.25);
+            transition: 0.25s ease;
+            overflow: hidden;
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 22px 60px rgba(245, 166, 20, 0.38);
+        }
+
+        .download-button::after {
+            content: "";
+            position: absolute;
+            width: 80px;
+            height: 200%;
+            top: -50%;
+            left: -100px;
+            background: rgba(255, 255, 255, 0.25);
+            transform: rotate(20deg);
+            transition: 0.6s ease;
+        }
+
+        .download-button:hover::after {
+            left: 120%;
+        }
+
+        .download-icon {
+            font-size: 20px;
+        }
+
+        .platform {
+            color: rgba(255, 245, 220, 0.38);
+            font-size: 13px;
+        }
+
+        .header-download:focus-visible,
+        .download-button:focus-visible,
+        .logo:focus-visible {
+            outline: 2px solid #f7c62a;
+            outline-offset: 3px;
+        }
+
+        /* ---------- Правая часть ---------- */
+
+        .visual {
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .visual-glow {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(245, 194, 28, 0.22),
+                rgba(181, 104, 24, 0.10) 45%,
+                transparent 70%
+            );
+            filter: blur(15px);
+        }
+
+        .app-card {
+            position: relative;
+            z-index: 2;
+            width: 330px;
+            height: 510px;
+            padding: 30px;
+            border-radius: 38px;
+            background: linear-gradient(
+                145deg,
+                rgba(75, 68, 56, 0.62),
+                rgba(31, 29, 25, 0.92)
+            );
+            border: 1px solid rgba(245, 194, 28, 0.13);
+            backdrop-filter: blur(20px);
+            box-shadow:
+                0 40px 100px rgba(0, 0, 0, 0.65),
+                0 0 80px rgba(245, 169, 24, 0.10);
+            transform: rotate(4deg);
+            animation: floating 5s ease-in-out infinite;
+        }
+
+        .app-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 55px;
+        }
+
+        .app-status {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #9fd438;
+            box-shadow: 0 0 15px rgba(159, 212, 56, 0.7);
+        }
+
+        .app-menu {
+            display: flex;
+            gap: 5px;
+        }
+
+        .app-menu span {
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 235, 190, 0.45);
+            border-radius: 50%;
+        }
+
+        .app-logo {
+            display: block;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            object-fit: contain;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .app-name {
+            text-align: center;
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .app-subtitle {
+            text-align: center;
+            color: rgba(255, 245, 220, 0.42);
+            font-size: 13px;
+        }
+
+        .app-box {
+            height: 100px;
+            margin-top: 45px;
+            border-radius: 20px;
+            background: linear-gradient(
+                135deg,
+                rgba(245, 194, 28, 0.20),
+                rgba(142, 76, 25, 0.12)
+            );
+            border: 1px solid rgba(245, 194, 28, 0.12);
+        }
+
+        .app-lines {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .app-line {
+            height: 9px;
+            border-radius: 10px;
+            background: rgba(255, 235, 190, 0.08);
+        }
+
+        .app-line:nth-child(1) { width: 80%; }
+        .app-line:nth-child(2) { width: 62%; }
+        .app-line:nth-child(3) { width: 72%; }
+
+        @keyframes floating {
+            0%, 100% { transform: rotate(4deg) translateY(0); }
+            50%      { transform: rotate(4deg) translateY(-13px); }
+        }
+
+        /* Декоративные точки */
+
+        .dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .dot-one {
+            top: 15%;
+            right: 12%;
+            background: #e7b51b;
+            box-shadow: 0 0 20px rgba(245, 194, 28, 0.75);
+        }
+
+        .dot-two {
+            left: 7%;
+            bottom: 20%;
+            background: #d98224;
+            box-shadow: 0 0 20px rgba(255, 157, 36, 0.65);
+        }
+
+        /* ---------- Features ---------- */
+
+        .features {
+            position: relative;
+            z-index: 2;
+            padding: 60px 0 150px;
+        }
+
+        .features-header {
+            max-width: 720px;
+            margin-bottom: 55px;
+        }
+
+        .features-header .label {
+            margin-bottom: 0;
+        }
+
+        .features-header h2 {
+            margin: 24px 0 18px;
+            font-size: clamp(44px, 5vw, 72px);
+            line-height: 0.98;
+            letter-spacing: -0.045em;
+            color: #fff5dc;
+        }
+
+        .features-header h2 span {
+            display: block;
+            background: linear-gradient(100deg, #f7c62a, #e99a18);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .features-header p {
+            max-width: 560px;
+            font-size: 18px;
+            line-height: 1.6;
+            color: rgba(255, 245, 220, 0.52);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .feature-card {
+            position: relative;
+            min-height: 260px;
+            padding: 30px;
+            border-radius: 28px;
+            background: linear-gradient(145deg, #29261f, #211f1b);
+            border: 1px solid rgba(245, 194, 28, 0.10);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.025),
+                0 20px 60px rgba(0, 0, 0, 0.20);
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(245, 194, 28, 0.28);
+            background: linear-gradient(145deg, #302c23, #25221d);
+        }
+
+        .feature-icon {
+            width: 58px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 55px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #f7c62a, #e99a18);
+            color: #241c0c;
+            font-size: 26px;
+            box-shadow: 0 12px 30px rgba(233, 154, 24, 0.18);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            font-size: 21px;
+            line-height: 1.15;
+            color: #fff5dc;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            line-height: 1.55;
+            color: rgba(255, 245, 220, 0.48);
+        }
+
+        /* ---------- Планшет / мобильный ---------- */
+
+        @media (max-width: 900px) {
+            .features {
+                padding: 40px 0 110px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 850px) {
+            .container {
+                width: calc(100% - 28px);
+            }
+
+            header {
+                height: 75px;
+            }
+
+            .logo img {
+                width: 130px;
+            }
+
+            .header-download {
+                height: 40px;
+                padding: 0 15px;
+                font-size: 13px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 20px;
+                padding-top: 55px;
+                min-height: auto;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+
+            .description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .actions {
+                justify-content: center;
+            }
+
+            .visual {
+                min-height: 560px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .features {
+                padding: 30px 0 90px;
+            }
+
+            .features-header h2 {
+                font-size: 42px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                min-height: 220px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .header-download {
+                display: none;
+            }
+
+            h1 {
+                font-size: 48px;
+                letter-spacing: -2.5px;
+            }
+
+            .description {
+                font-size: 15px;
+            }
+
+            .download-button {
+                width: 100%;
+            }
+
+            .visual {
+                min-height: 510px;
+            }
+
+            .app-card {
+                width: 285px;
+                height: 460px;
+                padding: 25px;
+                border-radius: 32px;
+            }
+
+            .app-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .visual-glow {
+                width: 350px;
+                height: 350px;
+            }
+        }
+
+        /* ---------- Reduced motion ---------- */
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .app-card {
+                animation: none;
+            }
+
+            * {
+                transition: none !important;
+            }
+        }
+
+        /* =====================================================
+   INSTALL MODAL
+   ===================================================== */
+
+.install-modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.install-modal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* Затемнение */
+
+.install-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.78);
+
+    backdrop-filter: blur(7px);
+}
+
+
+/* Окно */
+
+.install-modal-window {
+    position: relative;
+    z-index: 2;
+
+    width: min(520px, 100%);
+
+    max-height: min(820px, calc(100vh - 40px));
+
+    overflow: auto;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #302d27,
+            #1d1b18
+        );
+
+    border: 1px solid rgba(245, 194, 28, 0.18);
+
+    box-shadow:
+        0 40px 120px rgba(0, 0, 0, 0.7),
+        0 0 70px rgba(245, 169, 24, 0.08);
+
+    transform: translateY(25px) scale(0.98);
+
+    transition:
+        transform 0.25s ease;
+}
+
+.install-modal.active .install-modal-window {
+    transform: translateY(0) scale(1);
+}
+
+
+/* Контент */
+
+.install-modal-content {
+    padding: 30px;
+}
+
+
+/* Крестик */
+
+.install-close {
+    position: absolute;
+
+    top: 16px;
+    right: 16px;
+
+    z-index: 5;
+
+    width: 40px;
+    height: 40px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #fff5dc;
+
+    font-size: 28px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.install-close:hover {
+    background: rgba(255, 255, 255, 0.14);
+    transform: rotate(5deg);
+}
+
+
+/* Заголовок */
+
+.install-modal-title {
+    padding-right: 50px;
+
+    margin-bottom: 24px;
+
+    color: #fff5dc;
+
+    font-size: clamp(30px, 5vw, 42px);
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: -0.04em;
+}
+
+
+/* Переключатель */
+
+.install-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    padding: 4px;
+
+    border-radius: 17px;
+
+    background: #24221e;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    margin-bottom: 24px;
+}
+
+.install-tab {
+    height: 48px;
+
+    border: 0;
+    border-radius: 13px;
+
+    background: transparent;
+
+    color: rgba(255, 245, 220, 0.48);
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.install-tab.active {
+    background: #f2f0ec;
+
+    color: #24211c;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Панели */
+
+.install-panel {
+    display: none;
+}
+
+.install-panel.active {
+    display: block;
+}
+
+
+/* Изображение */
+
+.install-image {
+    width: 100%;
+    height: 180px;
+
+    margin-bottom: 24px;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background: #25231f;
+}
+
+.install-image-placeholder {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(245, 194, 28, 0.13),
+            transparent 55%
+        );
+}
+
+.install-image-placeholder img {
+    width: 100px;
+    height: 100px;
+
+    object-fit: contain;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.ios-placeholder {
+    color: rgba(255, 245, 220, 0.35);
+
+    font-size: 38px;
+    font-weight: 800;
+}
+
+
+/* Шаг */
+
+.install-step {
+    display: flex;
+    gap: 16px;
+
+    margin-bottom: 20px;
+}
+
+.install-step-number {
+    flex: 0 0 auto;
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f0eee9;
+
+    color: #514b42;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.install-step-text h3 {
+    margin: 0 0 6px;
+
+    color: #fff5dc;
+
+    font-size: 16px;
+}
+
+.install-step-text p {
+    margin: 0;
+
+    color: rgba(255, 245, 220, 0.48);
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* Кнопки */
+
+.install-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+.install-download,
+.install-cancel {
+    min-height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.install-download {
+    color: #241d0c;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7c62a,
+            #e99a18
+        );
+
+    border: 0;
+}
+
+.install-download:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 35px rgba(233, 154, 24, 0.22);
+}
+
+.install-cancel {
+    color: #3c3831;
+
+    background: #f1efea;
+
+    border: 0;
+}
+
+.install-cancel:hover {
+    background: #ffffff;
+}
+
+.install-cancel.full {
+    width: 100%;
+    margin-top: 25px;
+}
+
+
+/* Body lock */
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
+/* Mobile */
+
+@media (max-width: 560px) {
+
+    .install-modal {
+        padding: 10px;
+        align-items: flex-end;
+    }
+
+    .install-modal-window {
+        width: 100%;
+        max-height: calc(100vh - 20px);
+
+        border-radius: 28px 28px 20px 20px;
+    }
+
+    .install-modal-content {
+        padding: 24px;
+    }
+
+    .install-modal-title {
+        font-size: 31px;
+    }
+
+    .install-image {
+        height: 170px;
+    }
+
+    .install-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+/* =====================================================
+   IOS INSTALL V2
+   ===================================================== */
+
+.ios-hero-visual {
+    position: relative;
+
+    height: 250px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 25px;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(247, 198, 42, 0.15),
+            transparent 60%
+        ),
+        #25231f;
+}
+
+.ios-visual-glow {
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(247, 198, 42, 0.08);
+
+    filter: blur(45px);
+}
+
+
+/* PHONE */
+
+.ios-phone-demo {
+    position: relative;
+
+    z-index: 2;
+
+    width: 150px;
+    height: 218px;
+
+    padding: 6px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #3a3833,
+            #141413
+        );
+
+    box-shadow:
+        0 25px 55px rgba(0, 0, 0, 0.55);
+
+    transform: rotate(-2deg);
+}
+
+.ios-phone-notch {
+    position: absolute;
+
+    z-index: 5;
+
+    top: 9px;
+    left: 50%;
+
+    width: 58px;
+    height: 16px;
+
+    transform: translateX(-50%);
+
+    border-radius: 12px;
+
+    background: #050505;
+}
+
+.ios-phone-screen {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background: #f2f0eb;
+}
+
+
+/* SAFARI */
+
+.ios-safari-top {
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    color: #69645c;
+
+    background: #e5e3de;
+
+    font-size: 8px;
+    font-weight: 700;
+}
+
+.ios-safari-lock {
+    font-size: 10px;
+}
+
+
+/* PAGE */
+
+.ios-page-demo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 26px;
+}
+
+.ios-page-demo img {
+    width: 45px;
+    height: 45px;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+}
+
+.ios-demo-title {
+    margin-top: 8px;
+
+    color: #24211d;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.ios-demo-button {
+    margin-top: 15px;
+
+    padding: 8px 14px;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7c62a,
+            #e99a18
+        );
+
+    color: #2a220e;
+
+    font-size: 8px;
+    font-weight: 800;
+}
+
+
+/* SHARE */
+
+.ios-share-pill {
+    position: absolute;
+
+    left: 50%;
+    bottom: 12px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 7px 10px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    color: #423e36;
+
+    white-space: nowrap;
+
+    font-size: 7px;
+    font-weight: 700;
+
+    box-shadow:
+        0 7px 20px rgba(0, 0, 0, 0.14);
+}
+
+.ios-share-pill span {
+    color: #d48b18;
+
+    font-size: 11px;
+}
+
+
+/* INTRO */
+
+.ios-install-intro {
+    margin-bottom: 24px;
+}
+
+.ios-install-intro h3 {
+    margin: 0 0 8px;
+
+    color: #fff5dc;
+
+    font-size: 25px;
+    line-height: 1.05;
+}
+
+.ios-install-intro h3 span {
+    color: #f3b51e;
+}
+
+.ios-install-intro p {
+    margin: 0;
+
+    color: rgba(255, 245, 220, 0.48);
+
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+
+/* STEPS */
+
+.ios-step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+
+    margin-bottom: 20px;
+}
+
+.ios-step {
+    display: flex;
+    gap: 13px;
+
+    padding: 14px;
+
+    border-radius: 18px;
+
+    background: #25231f;
+
+    border: 1px solid rgba(245, 194, 28, 0.08);
+}
+
+.ios-step-number {
+    flex: 0 0 auto;
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7c62a,
+            #e99a18
+        );
+
+    color: #2a210d;
+
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.ios-step-content {
+    min-width: 0;
+}
+
+.ios-step-content h4 {
+    margin: 1px 0 5px;
+
+    color: #fff5dc;
+
+    font-size: 14px;
+}
+
+.ios-step-content p {
+    margin: 0;
+
+    color: rgba(255, 245, 220, 0.46);
+
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+
+/* OPEN PETUH */
+
+.ios-open-petuh {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 40px;
+
+    margin-top: 11px;
+    padding: 0 15px;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7c62a,
+            #e99a18
+        );
+
+    color: #241d0c;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transition: 0.2s ease;
+}
+
+.ios-open-petuh:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(233, 154, 24, 0.18);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 560px) {
+
+    .ios-hero-visual {
+        height: 225px;
+    }
+
+    .ios-phone-demo {
+        width: 140px;
+        height: 205px;
+    }
+
+    .ios-install-intro h3 {
+        font-size: 23px;
+    }
+
+    .ios-step {
+        padding: 13px;
+    }
+
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <a href="#" class="logo" aria-label="Petuh — на главную">
+                <img src="images/PETUH-LOGO.png" alt="Petuh">
+            </a>
+
+            <a
+                href="https://play.google.com/store/apps/details?id=pro.petuh.app"
+                target="_blank"
+                rel="noopener"
+                class="header-download"
+            >
+                Скачать приложение
+            </a>
+        </header>
+
+
+        <main class="hero">
+
+            <section class="hero-content">
+
+                <div class="label">
+                    <span class="label-dot"></span>
+                    Petuh CS2
+                </div>
+
+                <h1>
+                    Твой CS2.<br>
+                    <span>Всегда под рукой.</span>
+                </h1>
+
+                <p class="description">
+                    Petuh CS2 - приложение для игроков,
+                    которое собирает всё необходимое
+                    в одном месте.
+                </p>
+
+                <div class="actions">
+                    <a
+                        href="https://play.google.com/store/apps/details?id=pro.petuh.app"
+                        target="_blank"
+                        rel="noopener"
+                        class="download-button"
+                    >
+                        <span class="download-icon" aria-hidden="true">↓</span>
+                        Скачать приложение
+                    </a>
+
+                    <span class="platform">
+                        Android · Google Play
+                    </span>
+                </div>
+
+            </section>
+
+
+            <section class="visual" aria-hidden="true">
+
+                <div class="visual-glow"></div>
+
+                <div class="dot dot-one"></div>
+                <div class="dot dot-two"></div>
+
+                <div class="app-card">
+
+                    <div class="app-top">
+                        <div class="app-status"></div>
+
+                        <div class="app-menu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <img
+                        src="images/PETUH-LOGO.png"
+                        alt=""
+                        class="app-logo"
+                        width="120"
+                        height="120"
+                    >
+
+                    <div class="app-name">Petuh CS2</div>
+
+                    <div class="app-subtitle">Всё необходимое для CS2</div>
+
+                    <div class="app-box"></div>
+
+                    <div class="app-lines">
+                        <div class="app-line"></div>
+                        <div class="app-line"></div>
+                        <div class="app-line"></div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- FEATURES (вынесено из <main>) -->
+        <section class="features">
+
+            <div class="features-header">
+                <div class="label">
+                    <span class="label-dot"></span>
+                    Petuh CS2
+                </div>
+
+                <h2>
+                    Всё нужное -
+                    <span>в одном приложении.</span>
+                </h2>
+
+                <p>
+                    Открывай приложение и получай быстрый доступ
+                    ко всему, что нужно тебе в мире PETUH.
+                </p>
+            </div>
+
+            <div class="features-grid">
+
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">⚡</div>
+                    <h3>Быстрый доступ</h3>
+                    <p>
+                        Всё самое важное всегда под рукой,
+                        без лишних переходов и поиска.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🎮</div>
+                    <h3>Для игроков CS2</h3>
+                    <p>
+                        Приложение создано специально
+                        для игроков и сообщества PETUH.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🔔</div>
+                    <h3>Будь в курсе</h3>
+                    <p>
+                        Получай важные обновления
+                        и не пропускай события.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🐔</div>
+                    <h3>Всё от PETUH</h3>
+                    <p>
+                        Знакомая атмосфера PETUH
+                        теперь прямо в твоём смартфоне.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+<!-- INSTALL MODAL -->
+<div class="install-modal" id="installModal" aria-hidden="true">
+
+    <div class="install-overlay" data-close-modal></div>
+
+    <div
+        class="install-modal-window"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="installModalTitle"
+    >
+
+        <button
+            class="install-close"
+            type="button"
+            aria-label="Закрыть"
+            data-close-modal
+        >
+            ×
+        </button>
+
+
+        <div class="install-modal-content">
+
+            <div class="install-modal-header">
+
+                <div class="install-modal-title" id="installModalTitle">
+                    Установка приложения
+                </div>
+
+                <div class="install-tabs">
+
+                    <button
+                        class="install-tab"
+                        type="button"
+                        data-install-tab="ios"
+                    >
+                        iOS
+                    </button>
+
+                    <button
+                        class="install-tab active"
+                        type="button"
+                        data-install-tab="android"
+                    >
+                        Android
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANDROID -->
+
+            <div
+                class="install-panel active"
+                data-install-panel="android"
+            >
+
+                <div class="install-image">
+                    <div class="install-image-placeholder">
+                        <img
+                            src="images/PETUH-LOGO.png"
+                            alt="Petuh CS2"
+                        >
+                    </div>
+                </div>
+
+
+                <div class="install-step">
+                    <div class="install-step-number">1</div>
+
+                    <div class="install-step-text">
+                        <h3>Скачайте приложение</h3>
+
+                        <p>
+                            Нажмите кнопку «Скачать» и перейдите
+                            на страницу Petuh CS2 в Google Play.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="install-step">
+                    <div class="install-step-number">2</div>
+
+                    <div class="install-step-text">
+                        <h3>Установите его</h3>
+
+                        <p>
+                            Нажмите «Установить» в Google Play
+                            и дождитесь окончания установки.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="install-actions">
+
+                    <a
+                        href="https://play.google.com/store/apps/details?id=pro.petuh.app"
+                        target="_blank"
+                        rel="noopener"
+                        class="install-download"
+                    >
+                        Скачать
+                    </a>
+
+                    <button
+                        type="button"
+                        class="install-cancel"
+                        data-close-modal
+                    >
+                        Закрыть
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- IOS -->
+
+          <div
+    class="install-panel"
+    data-install-panel="ios"
+>
+
+    <div class="ios-hero-visual">
+
+        <div class="ios-phone-demo">
+
+            <div class="ios-phone-notch"></div>
+
+            <div class="ios-phone-screen">
+
+                <div class="ios-safari-top">
+                    <span class="ios-safari-lock">⌁</span>
+                    <span>petuh.net</span>
+                </div>
+
+                <div class="ios-page-demo">
+
+                    <img
+                        src="images/PETUH-LOGO.png"
+                        alt="Petuh"
+                    >
+
+                    <div class="ios-demo-title">
+                        Petuh
+                    </div>
+
+                    <div class="ios-demo-button">
+                        Petuh CS2
+                    </div>
+
+                </div>
+
+                <div class="ios-share-pill">
+                    <span>↑</span>
+                    Поделиться
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="ios-visual-glow"></div>
+
+    </div>
+
+
+    <div class="ios-install-intro">
+
+        <h3>
+            Установи Petuh
+            <span>на iPhone</span>
+        </h3>
+
+        <p>
+            Это займёт меньше минуты.
+            Открой Petuh в Safari и добавь его
+            на главный экран.
+        </p>
+
+    </div>
+
+
+    <div class="ios-step-list">
+
+        <div class="ios-step">
+
+            <div class="ios-step-number">
+                1
+            </div>
+
+            <div class="ios-step-content">
+
+                <h4>
+                    Открой Petuh в Safari
+                </h4>
+
+                <p>
+                    Нажми кнопку ниже. Откроется
+                    официальный сайт Petuh.
+                </p>
+
+                <a
+                    href="https://petuh.net"
+                    class="ios-open-petuh"
+                >
+                    Открыть Petuh
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="ios-step">
+
+            <div class="ios-step-number">
+                2
+            </div>
+
+            <div class="ios-step-content">
+
+                <h4>
+                    Нажми «Поделиться»
+                </h4>
+
+                <p>
+                    В нижней панели Safari нажми
+                    стандартную кнопку «Поделиться».
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="ios-step">
+
+            <div class="ios-step-number">
+                3
+            </div>
+
+            <div class="ios-step-content">
+
+                <h4>
+                    Выбери «На экран “Домой”»
+                </h4>
+
+                <p>
+                    Пролистай меню и выбери
+                    пункт добавления на экран «Домой».
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="ios-step">
+
+            <div class="ios-step-number">
+                4
+            </div>
+
+            <div class="ios-step-content">
+
+                <h4>
+                    Включи «Открывать как веб-приложение»
+                </h4>
+
+                <p>
+                    Оставь эту опцию включённой,
+                    чтобы Petuh открывался отдельно
+                    от Safari.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="ios-step">
+
+            <div class="ios-step-number">
+                5
+            </div>
+
+            <div class="ios-step-content">
+
+                <h4>
+                    Нажми «Добавить»
+                </h4>
+
+                <p>
+                    Иконка Petuh появится прямо
+                    на домашнем экране iPhone.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        type="button"
+        class="install-cancel full"
+        data-close-modal
+    >
+        Закрыть
+    </button>
+
+</div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    const installModal = document.getElementById("installModal");
+
+    const openModalButtons = document.querySelectorAll(
+        ".download-button, .header-download"
+    );
+
+    const closeModalButtons = document.querySelectorAll(
+        "[data-close-modal]"
+    );
+
+    const installTabs = document.querySelectorAll(
+        "[data-install-tab]"
+    );
+
+    const installPanels = document.querySelectorAll(
+        "[data-install-panel]"
+    );
+
+
+    function openInstallModal() {
+        installModal.classList.add("active");
+        installModal.setAttribute("aria-hidden", "false");
+
+        document.body.classList.add("modal-open");
+    }
+
+
+    function closeInstallModal() {
+        installModal.classList.remove("active");
+        installModal.setAttribute("aria-hidden", "true");
+
+        document.body.classList.remove("modal-open");
+    }
+
+
+    openModalButtons.forEach(button => {
+        button.addEventListener("click", event => {
+            event.preventDefault();
+            openInstallModal();
+        });
+    });
+
+
+    closeModalButtons.forEach(button => {
+        button.addEventListener("click", closeInstallModal);
+    });
+
+
+    installTabs.forEach(tab => {
+
+        tab.addEventListener("click", () => {
+
+            const target = tab.dataset.installTab;
+
+
+            installTabs.forEach(item => {
+                item.classList.toggle(
+                    "active",
+                    item.dataset.installTab === target
+                );
+            });
+
+
+            installPanels.forEach(panel => {
+                panel.classList.toggle(
+                    "active",
+                    panel.dataset.installPanel === target
+                );
+            });
+
+        });
+
+    });
+
+
+    document.addEventListener("keydown", event => {
+
+        if (
+            event.key === "Escape" &&
+            installModal.classList.contains("active")
+        ) {
+            closeInstallModal();
+        }
+
+    });
+</script>
+</body>
+</html>
