@@ -32,18 +32,31 @@
 
         /* ---------- Фон ---------- */
 
-        body::before {
-            content: "";
-            position: fixed;
-            width: 700px;
-            height: 700px;
-            left: -300px;
-            top: -300px;
-            background: rgba(105, 73, 25, 0.20);
-            filter: blur(150px);
-            border-radius: 50%;
-            pointer-events: none;
-        }
+      body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(8, 7, 5, 0.30) 0%,
+            rgba(8, 7, 5, 0.52) 45%,
+            rgba(8, 7, 5, 0.93) 100%
+        ),
+        radial-gradient(
+            circle at 70% 35%,
+            rgba(245, 166, 20, 0.05),
+            transparent 35%
+        ),
+        url("/images/petuh_baground.png");
+
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
 
         body::after {
             content: "";
@@ -119,6 +132,7 @@
     gap: 10px;
     padding: 45px 0 10px;
     min-height: auto;
+     background: url("/images/petuh-bg.png") center center / cover no-repeat;
 }
         .hero-content {
             max-width: 650px;
@@ -1572,6 +1586,175 @@ body.modal-open {
         transform: rotate(4deg);
     }
 }
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.site-footer {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    border-top: 1px solid rgba(245, 194, 28, 0.10);
+
+    background:
+        linear-gradient(
+            180deg,
+            #171613 0%,
+            #12110f 100%
+        );
+}
+
+.footer-inner {
+    width: min(1200px, calc(100% - 40px));
+
+    min-height: 120px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.footer-copy {
+    color: rgba(255, 245, 220, 0.42);
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+}
+
+.footer-social-title {
+    color: rgba(255, 245, 220, 0.60);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.footer-social-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-social-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    max-width: 220px;
+}
+
+.footer-social-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: 220px;
+}
+
+.footer-social-links a {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #29261f;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.footer-social-links img {
+    width: 19px;
+    height: 19px;
+
+    display: block;
+
+    filter: brightness(0) invert(1);
+
+    opacity: 0.72;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.footer-social-links a:hover {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7c62a,
+            #e99a18
+        );
+
+    border-color: transparent;
+}
+
+.footer-social-links a:hover img {
+    opacity: 1;
+    filter: brightness(0);
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 700px) {
+
+    .footer-inner {
+        width: calc(100% - 28px);
+
+        min-height: auto;
+
+        padding: 28px 0;
+
+        flex-direction: column;
+
+        justify-content: center;
+        text-align: center;
+
+        gap: 20px;
+    }
+
+    .footer-social {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .footer-social-links {
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        max-width: 330px;
+    }
+
+}
     </style>
 </head>
 
@@ -1622,7 +1805,6 @@ body.modal-open {
                         rel="noopener"
                         class="download-button"
                     >
-                        <span class="download-icon" aria-hidden="true">↓</span>
                         Скачать приложение
                     </a>
 
@@ -1766,6 +1948,103 @@ body.modal-open {
         </section>
 
     </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <div class="footer-copy">
+                © 2026 petuh.net
+            </div>
+
+
+            <div class="footer-social">
+
+                <div class="footer-social-title">
+                    Мы в соц. сетях
+                </div>
+
+              <div class="footer-social-links">
+
+    <a
+        href="https://vk.ru/petuh_club"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="VK"
+    >
+        <img src="https://cdn.simpleicons.org/vk" alt="VK">
+    </a>
+
+    <a
+        href="https://telegram.me/petuhclub"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Telegram"
+    >
+        <img src="https://cdn.simpleicons.org/telegram" alt="Telegram">
+    </a>
+
+    <a
+        href="https://discord.com/invite/8z3nFCAr7G"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Discord"
+    >
+        <img src="https://cdn.simpleicons.org/discord" alt="Discord">
+    </a>
+
+    <a
+        href="https://www.tiktok.com/@petuhsila"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="TikTok"
+    >
+        <img src="https://cdn.simpleicons.org/tiktok" alt="TikTok">
+    </a>
+
+    <a
+        href="https://www.youtube.com/@PETUHCLUB"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="YouTube"
+    >
+        <img src="https://cdn.simpleicons.org/youtube" alt="YouTube">
+    </a>
+
+    <a
+        href="https://www.twitch.tv/alekseev1chhh"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Twitch"
+    >
+        <img src="https://cdn.simpleicons.org/twitch" alt="Twitch">
+    </a>
+
+    <a
+        href="https://www.instagram.com/petuh_sila/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+    >
+        <img src="https://cdn.simpleicons.org/instagram" alt="Instagram">
+    </a>
+
+</div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- INSTALL MODAL -->
+
 <!-- INSTALL MODAL -->
 <div class="install-modal" id="installModal" aria-hidden="true">
 
@@ -1790,9 +2069,14 @@ body.modal-open {
 
         <div class="install-modal-content">
 
+            <!-- HEADER -->
+
             <div class="install-modal-header">
 
-                <div class="install-modal-title" id="installModalTitle">
+                <div
+                    class="install-modal-title"
+                    id="installModalTitle"
+                >
                     Установка приложения
                 </div>
 
@@ -1819,7 +2103,9 @@ body.modal-open {
             </div>
 
 
-            <!-- ANDROID -->
+            <!-- =================================================
+                 ANDROID
+                 ================================================= -->
 
             <div
                 class="install-panel active"
@@ -1827,40 +2113,62 @@ body.modal-open {
             >
 
                 <div class="install-image">
+
                     <div class="install-image-placeholder">
+
                         <img
-                            src="images/PETUH-LOGO.png"
+                            src="images/logo.png"
                             alt="Petuh CS2"
                         >
+
                     </div>
+
                 </div>
 
 
                 <div class="install-step">
-                    <div class="install-step-number">1</div>
+
+                    <div class="install-step-number">
+                        1
+                    </div>
 
                     <div class="install-step-text">
-                        <h3>Скачайте приложение</h3>
+
+                        <h3>
+                            Откройте Google Play
+                        </h3>
 
                         <p>
-                            Нажмите кнопку «Скачать» и перейдите
-                            на страницу Petuh CS2 в Google Play.
+                            Нажмите «Установить» ниже,
+                            чтобы перейти на страницу
+                            Petuh CS2 в Google Play.
                         </p>
+
                     </div>
+
                 </div>
 
 
                 <div class="install-step">
-                    <div class="install-step-number">2</div>
+
+                    <div class="install-step-number">
+                        2
+                    </div>
 
                     <div class="install-step-text">
-                        <h3>Установите его</h3>
+
+                        <h3>
+                            Установите приложение
+                        </h3>
 
                         <p>
-                            Нажмите «Установить» в Google Play
-                            и дождитесь окончания установки.
+                            В Google Play нажмите
+                            «Установить» и дождитесь
+                            окончания загрузки.
                         </p>
+
                     </div>
+
                 </div>
 
 
@@ -1872,7 +2180,7 @@ body.modal-open {
                         rel="noopener"
                         class="install-download"
                     >
-                        Скачать
+                        Установить
                     </a>
 
                     <button
@@ -1888,204 +2196,97 @@ body.modal-open {
             </div>
 
 
-            <!-- IOS -->
+            <!-- =================================================
+                 IOS
+                 ================================================= -->
 
-          <div
-    class="install-panel"
-    data-install-panel="ios"
->
+            <div
+                class="install-panel"
+                data-install-panel="ios"
+            >
 
-    <div class="ios-hero-visual">
+                <div class="install-image">
 
-        <div class="ios-phone-demo">
+                    <div class="install-image-placeholder">
 
-            <div class="ios-phone-notch"></div>
+                        <img
+                            src="images/logo.png"
+                            alt="Petuh CS2"
+                        >
 
-            <div class="ios-phone-screen">
+                    </div>
 
-                <div class="ios-safari-top">
-                    <span class="ios-safari-lock">⌁</span>
-                    <span>petuh.net</span>
                 </div>
 
-                <div class="ios-page-demo">
 
-                    <img
-                        src="images/PETUH-LOGO.png"
-                        alt="Petuh"
+                <div class="install-step">
+
+                    <div class="install-step-number">
+                        1
+                    </div>
+
+                    <div class="install-step-text">
+
+                        <h3>
+                            Откройте App Store
+                        </h3>
+
+                        <p>
+                            Нажмите «Установить» ниже,
+                            чтобы открыть страницу
+                            Petuh CS2 в App Store.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="install-step">
+
+                    <div class="install-step-number">
+                        2
+                    </div>
+
+                    <div class="install-step-text">
+
+                        <h3>
+                            Нажмите «Получить»
+                        </h3>
+
+                        <p>
+                            В App Store нажмите
+                            «Получить» и подтвердите
+                            установку приложения.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="install-actions">
+
+                    <a
+                        href="https://apps.apple.com/ua/app/petuh-cs2/id6775467833?l=uk"
+                        target="_blank"
+                        rel="noopener"
+                        class="install-download"
                     >
+                        Установить
+                    </a>
 
-                    <div class="ios-demo-title">
-                        Petuh
-                    </div>
-
-                    <div class="ios-demo-button">
-                        Petuh CS2
-                    </div>
+                    <button
+                        type="button"
+                        class="install-cancel"
+                        data-close-modal
+                    >
+                        Закрыть
+                    </button>
 
                 </div>
 
-                <div class="ios-share-pill">
-                    <span>↑</span>
-                    Поделиться
-                </div>
-
             </div>
-
-        </div>
-
-        <div class="ios-visual-glow"></div>
-
-    </div>
-
-
-    <div class="ios-install-intro">
-
-        <h3>
-            Установи Petuh
-            <span>на iPhone</span>
-        </h3>
-
-        <p>
-            Это займёт меньше минуты.
-            Открой Petuh в Safari и добавь его
-            на главный экран.
-        </p>
-
-    </div>
-
-
-    <div class="ios-step-list">
-
-        <div class="ios-step">
-
-            <div class="ios-step-number">
-                1
-            </div>
-
-            <div class="ios-step-content">
-
-                <h4>
-                    Открой Petuh в Safari
-                </h4>
-
-                <p>
-                    Нажми кнопку ниже. Откроется
-                    официальный сайт Petuh.
-                </p>
-
-                <a
-                    href="https://petuh.net"
-                    class="ios-open-petuh"
-                >
-                    Открыть Petuh
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="ios-step">
-
-            <div class="ios-step-number">
-                2
-            </div>
-
-            <div class="ios-step-content">
-
-                <h4>
-                    Нажми «Поделиться»
-                </h4>
-
-                <p>
-                    В нижней панели Safari нажми
-                    стандартную кнопку «Поделиться».
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="ios-step">
-
-            <div class="ios-step-number">
-                3
-            </div>
-
-            <div class="ios-step-content">
-
-                <h4>
-                    Выбери «На экран “Домой”»
-                </h4>
-
-                <p>
-                    Пролистай меню и выбери
-                    пункт добавления на экран «Домой».
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="ios-step">
-
-            <div class="ios-step-number">
-                4
-            </div>
-
-            <div class="ios-step-content">
-
-                <h4>
-                    Включи «Открывать как веб-приложение»
-                </h4>
-
-                <p>
-                    Оставь эту опцию включённой,
-                    чтобы Petuh открывался отдельно
-                    от Safari.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="ios-step">
-
-            <div class="ios-step-number">
-                5
-            </div>
-
-            <div class="ios-step-content">
-
-                <h4>
-                    Нажми «Добавить»
-                </h4>
-
-                <p>
-                    Иконка Petuh появится прямо
-                    на домашнем экране iPhone.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <button
-        type="button"
-        class="install-cancel full"
-        data-close-modal
-    >
-        Закрыть
-    </button>
-
-</div>
 
         </div>
 
