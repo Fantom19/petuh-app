@@ -128,7 +128,6 @@
     gap: 10px;
     padding: 45px 0 10px;
     min-height: auto;
-     background: url("/images/petuh-bg.png") center center / cover no-repeat;
 }
         .hero-content {
             max-width: 650px;
@@ -321,7 +320,7 @@
             display: block;
             width: 120px;
             height: 120px;
-            margin: 0 auto 25px;
+            margin: 0 0 0px;
             object-fit: contain;
             border-radius: 30px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
@@ -1751,6 +1750,113 @@ body.modal-open {
     }
 
 }
+
+.app-downloads {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    width: 100%;
+    margin: 24px auto 20px;
+}
+
+.app-badge {
+    width: 206px;
+    height: 86px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    box-sizing: border-box;
+    padding: 0 10px;
+    gap: 8px;
+
+    background: #000;
+    border: 1.5px solid #fff;
+    border-radius: 18px;
+
+    color: #fff;
+    text-decoration: none;
+
+    overflow: hidden;
+}
+
+.app-logo {
+    width: 38px;
+    height: 38px;
+
+    object-fit: contain;
+    flex: 0 0 38px;
+}
+
+.apple-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.play-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.app-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 0;
+    line-height: 1;
+}
+
+.app-text span {
+    display: block;
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.1;
+
+    margin-bottom: 4px;
+    white-space: nowrap;
+}
+
+.app-text strong {
+    display: block;
+
+    color: #fff;
+
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1;
+
+    white-space: nowrap;
+}
+
+/* Чтобы на очень узких экранах всё равно помещалось */
+@media (max-width: 300px) {
+    .app-badge {
+        width: calc(100vw - 32px);
+    }
+
+    .app-logo,
+    .apple-logo,
+    .play-logo {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+    }
+
+    .app-text span {
+        font-size: 11px;
+    }
+
+    .app-text strong {
+        font-size: 21px;
+    }
+}
     </style>
 </head>
 
@@ -2033,6 +2139,42 @@ body.modal-open {
 </div>
 
             </div>
+
+           
+    <!-- Кнопки приложений -->
+<div class="app-downloads">
+
+    <!-- iOS -->
+    <a
+        href="https://apps.apple.com/ru/app/petuh-cs2/id6775467833"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="app-badge"
+    >
+        <img src="/images/apple_logo_ref.png" class="app-logo apple-logo" alt="Apple">
+        
+        <div class="app-text">
+            <span>Загрузите в</span>
+            <strong>App Store</strong>
+        </div>
+    </a>
+
+    <!-- Android -->
+    <a
+        href="https://play.google.com/store/apps/details?id=pro.petuh.app"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="app-badge"
+    >
+        <img src="/images/google_play_logo_ref.png" class="app-logo play-logo" alt="Google Play">
+
+        <div class="app-text">
+            <span>ЗАГРУЗИТЕ НА</span>
+            <strong>Google play</strong>
+        </div>
+    </a>
+
+</div>
 
         </div>
 
